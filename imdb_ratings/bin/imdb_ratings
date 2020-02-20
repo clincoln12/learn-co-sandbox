@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require_relative '../lib/imdb_ratings'
+
+ImdbRatings::CLI.new.call
