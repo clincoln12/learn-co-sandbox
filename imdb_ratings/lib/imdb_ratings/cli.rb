@@ -8,20 +8,21 @@ class ImdbRatings::CLI
   
   def get_genres
     #get_genres: eventually scrape ONLY the movie genres off of IMDB
-    @genres = ['Action', 'Animation', 'Comedy', 'Sci-Fi']
+    @genres = ImdbRatings::Genre.all
   end
   
   def list_genres
     #list_genres: list the scraped genres in the form of a string
+    puts "Please select one of the genres below:"
     @genres.each.with_index(1) do |genre, index|
-      puts "#{index}. #{genre}"
+      puts "#{index}. #{genre.name}"
     end
   end
   
   def get_user_genre
     #get_user_genre: get and validate the users selected genre via numeric input
     chosen_genre = gets.strip.to_i
-    show_genres(chosen_genre) if valid_input?(chosen_genre, @months)
+    show_movies(chosen_genre) if valid_input?(chosen_genre, @genres)
   end
   
   def valid_input?(input, data)
@@ -29,7 +30,8 @@ class ImdbRatings::CLI
     input.to_i <= data.length && input.to_i > 0
   end
   
-  def show_genres(chosen_genre)
+  def show_movies(chosen_genre)
     genre = @genres[chosen_genre - 1]
+    puts "Here are movies for #{genre.name}."
   end
 end
