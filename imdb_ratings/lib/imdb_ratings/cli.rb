@@ -33,6 +33,8 @@ class ImdbRatings::CLI
   def show_movies(chosen_genre)
     genre = @genres[chosen_genre - 1]
     puts "Here are the current Top 50 #{genre.name.strip} movies on IMDB:"
-    
+    genre.movies_to_show.each.with_index(1) do |movie, index|
+      puts "#{index}. #{movie.name.strip} #{movie.year} #{movie.rating}"
+    end
   end
 end

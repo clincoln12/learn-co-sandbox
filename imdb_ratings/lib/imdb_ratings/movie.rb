@@ -5,7 +5,7 @@ class ImdbRatings::Movie
   def initialize(name, year, rating)
     @name = name
     @year = year
-    @rating = rating
+    @rating = rating.to_f
     @@all << self unless @@all.include?(self)
   end
 end
