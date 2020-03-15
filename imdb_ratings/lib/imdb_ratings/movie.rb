@@ -2,19 +2,10 @@ class ImdbRatings::Movie
   attr_accessor :name, :year, :rating
   @@all = []
   
-  def initialize(name)
+  def initialize(name, year, rating)
     @name = name
-    @movies = []
-    @@all << self unless @@all.include?(self.name)
-  end
-  
-  def self.all
-    ImdbRatings::Scraper.scrape_movies if @@all.empty?
-    @@all
-  end
-  
-  def movies
-    ImdbRatings::Scraper.scrape_movies if @movies.empty?
-    @movies
+    @year = year
+    @rating = rating
+    @@all << self unless @@all.include?(self)
   end
 end

@@ -16,7 +16,7 @@ class ImdbRatings::Genre
   end
   
   def movies
-    ImdbRatings::Scraper.scrape_movies(path) if @movies.empty?
+    ImdbRatings::Scraper.scrape_movies(self) if @movies.empty?
     @movies
   end
 end
