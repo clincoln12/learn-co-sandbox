@@ -1,17 +1,15 @@
-class ImdbRatings::Genre
-  attr_accessor :name, :path
-  attr_writer :movies
+class ImdbRatings::Movie
+  attr_accessor :name, :year, :rating
   @@all = []
   
-  def initialize(name, path)
+  def initialize(name)
     @name = name
-    @path = path
     @movies = []
     @@all << self unless @@all.include?(self.name)
   end
   
   def self.all
-    ImdbRatings::Scraper.scrape_genres if @@all.empty?
+    ImdbRatings::Scraper.scrape_movies if @@all.empty?
     @@all
   end
   
