@@ -18,8 +18,17 @@ class ImdbRatings::Scraper
   end
   
   def self.scrape_movies(path)
-    genre_path = ImdbRatings::Genre.path
-    doc = Nokogiri::HTML(open("https://www.imdb.com#{genre_path}"))
+    imdb_url = "https://www.imdb.com#{path}"
+    doc = Nokogiri::HTML(open(imdb_url))
     movie_divs = doc.css("div.lister-item.mode-advanced")
+    
+    movie_divs.each do |movie_div|
+      header = movie_div.css('h3').first # this includes the name and the year
+      
+      title = header.css('a').text
+      year = header.css('span.lister-item-year').text
+    end
+    
+    
   end
 end
