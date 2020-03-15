@@ -7,6 +7,7 @@ require_relative "imdb_ratings/scraper"
 require 'pry'
 require 'nokogiri'
 require 'open-uri'
+require 'colorize'
 
 module ImdbRatings
   class Error < StandardError; end
