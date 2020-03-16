@@ -16,7 +16,7 @@ class ImdbRatings::CLI
     @genres.each.with_index(1) do |genre, index|
       puts "#{index}. #{genre.name.strip.yellow}"
     end
-    puts "^ Please select one of the genres above ^".yellow.bold
+    puts "^ Select one of the genres above (Select the number you want) ^".yellow.bold
   end
   
   def get_user_genre
@@ -31,6 +31,20 @@ class ImdbRatings::CLI
     end
   end
   
+  def get_user_decision
+    # prompts user for "back" to go back to genres or "exit" to quit the program
+    user_decision = gets.strip
+    if user_decision == "back"
+      list_genres
+      get_user_genre
+    elsif user_decision == "exit"
+      exit
+    else
+      puts "Invalid. Type 'back' to return to genres or 'exit' to end the program.".yellow.bold
+      get_user_decision
+    end
+  end
+  
   def valid_input?(input, data)
     # valid_input?: Does the user input fall between the range of listed genres?
     input.to_i <= data.length && input.to_i > 0
@@ -42,5 +56,7 @@ class ImdbRatings::CLI
     genre.movies_to_show.each.with_index(1) do |movie, index|
       puts "#{index}. #{movie.name.strip.yellow} #{movie.year.yellow} #{movie.rating}/10"
     end
+    puts "Type 'back' to return to the genres or 'exit' to end the program.".yellow.bold
+    get_user_decision
   end
 end
