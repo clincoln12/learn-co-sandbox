@@ -8,4 +8,8 @@ class ImdbRatings::Movie
     @rating = rating.to_f
     @@all << self unless @@all.include?(self)
   end
+  
+  def self.all
+    @@all
+  end
 end

@@ -34,6 +34,7 @@ class ImdbRatings::CLI
   def get_user_decision
     # prompts user for "back" to go back to genres or "exit" to quit the program
     user_decision = gets.strip
+    
     if user_decision == "back"
       list_genres
       get_user_genre

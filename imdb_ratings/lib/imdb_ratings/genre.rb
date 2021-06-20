@@ -24,6 +24,7 @@ class ImdbRatings::Genre
     movies.sort_by { |movie| -movie.rating }
   end
   
+  
   def movies_to_show
     rating_sorted_movies.filter do |movie|
       movie.rating > 0.0

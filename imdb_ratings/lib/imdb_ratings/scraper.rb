@@ -31,7 +31,6 @@ class ImdbRatings::Scraper
       
       ImdbRatings::Movie.new(title, year, rating)
     end
-    
     genre.movies = scraped_movies
   end
 end
